@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Rba films</string>
+    <string name="email">Email</string>
+    <string name="password">Password ?</string>
+    <string name="login">Login</string>
+    <string name="forget">Forget</string>
+    <string name="register1">Register</string>
+    <string name="register">Registration</string>
+    <string name="mobile">Mobile</string>
+    <string name="name">Name</string>
+    <string name="passworrd">Password</string>
+    <string name="submit">Submit</string>
+    <string name="otp">OTP</string>
+    <string name="c_password">Confirm Password</string>
+    <string name="details">Please complete your basic details</string>
 </resources>
