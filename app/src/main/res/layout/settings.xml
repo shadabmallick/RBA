@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+
+        android:background="@color/rba">
+
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/back_white"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:fontFamily="@font/lato_regular"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img"
+            android:text="Settings"></TextView>
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_main">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/light_grey"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Account Info"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@android:color/black"
+                    android:textSize="17dp"></TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/message_white"
+                        android:padding="7dp"
+                        android:background="@drawable/circle"></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@android:color/black"
+                        android:layout_height="wrap_content"
+                        android:text="shadab@gmail.com"></TextView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/mobile"
+                        android:tint="@color/white"
+                        android:padding="7dp"
+                        android:background="@drawable/circle"></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@android:color/black"
+                        android:layout_height="wrap_content"
+                        android:text="9876543210"></TextView>
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+
+
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+
+
+                        >
+
+                        <ImageView
+                            android:id="@+id/img1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:padding="5dp"
+
+                            android:tint="@color/white"
+                            android:background="@drawable/circle"
+                            android:src="@mipmap/password"></ImageView>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@+id/img1"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/lato_regular"
+                            android:textColor="@android:color/black"
+                            android:layout_height="wrap_content"
+                            android:text="Change Password"></TextView>
+
+
+                        <ImageView
+                            android:id="@+id/iv_eye"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="5dp"
+                            android:src="@mipmap/pencil_black"
+
+
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/ll_subs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_below="@+id/ll_top"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="100dp"
+
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subscription"
+                    android:textSize="16dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_regular"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Plan Standard"
+                    android:layout_marginTop="5dp"
+                    android:textSize="12dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_regular"
+                    ></TextView>
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/txt_plan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_top"
+                android:layout_marginTop="10dp"
+                android:text="Change Plan"
+                android:textColor="@color/rba"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"></TextView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/ll_subs"
+                android:background="@color/light_grey"></View>
+            <LinearLayout
+                android:id="@+id/ll_down"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_below="@+id/ll_subs"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="100dp"
+
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Download Settings"
+                    android:textSize="16dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_regular"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Download Quality 720p"
+                    android:layout_marginTop="5dp"
+                    android:textSize="12dp"
+
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_regular"
+                    ></TextView>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_top"
+                android:layout_marginTop="85dp"
+                android:text="Change"
+                android:textColor="@color/rba"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"></TextView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/ll_down"
+                android:background="@color/light_grey"></View>
+
+            <LinearLayout
+                android:id="@+id/ll_data_saver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_below="@+id/ll_down"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="100dp"
+
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mobile data Saver"
+                    android:textSize="16dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_regular"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disable HD Streaming on mobile data"
+                    android:layout_marginTop="5dp"
+                    android:textSize="12dp"
+
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_regular"
+                    ></TextView>
+
+            </LinearLayout>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_top"
+                android:layout_marginTop="155dp"
+                app:theme="@style/Color1SwitchStyle"
+                android:textColor="@color/rba"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"></Switch>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/ll_data_saver"
+                android:background="@color/light_grey"></View>
+
+            <LinearLayout
+                android:id="@+id/ll_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_below="@+id/ll_data_saver"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="100dp"
+
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="App Setting"
+                    android:textSize="16dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_regular"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Autoplay"
+                    android:layout_marginTop="5dp"
+                    android:textSize="12dp"
+
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_regular"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="App Version 2.3.45"
+                    android:layout_marginTop="5dp"
+                    android:textSize="12dp"
+
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_regular"
+                    ></TextView>
+
+            </LinearLayout>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_top"
+                android:layout_marginTop="220dp"
+                app:theme="@style/Color1SwitchStyle"
+                android:textColor="@color/rba"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"></Switch>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/ll_setting"
+                android:background="@color/light_grey"></View>
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

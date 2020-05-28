@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_back"
+                android:layout_width="match_parent"
+                android:background="@android:color/black"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/back_white"
+                    android:layout_marginLeft="20dp"
+                    android:background="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <com.longtailvideo.jwplayer.JWPlayerView
+                android:id="@+id/jwplayer"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:background="@color/light_grey"
+                android:layout_height="200dp"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Hum Saath-Saath Hain"></TextView>
+
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:textColor="@color/dark_grey"
+                       android:fontFamily="@font/lato_regular"
+                       android:text="1999"></TextView>
+
+                   <View
+                       android:layout_width="2sp"
+                       android:layout_marginLeft="5sp"
+                       android:layout_gravity="center"
+                       android:background="@color/dark_grey"
+                       android:layout_height="14sp"></View>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:textColor="@color/dark_grey"
+
+                       android:fontFamily="@font/lato_regular"
+                       android:layout_marginLeft="5sp"
+                       android:text="Family"></TextView>
+
+                   <View
+                       android:layout_width="2sp"
+                       android:layout_marginLeft="5sp"
+                       android:layout_gravity="center"
+                       android:background="@color/dark_grey"
+                       android:layout_height="14sp"></View>
+
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:textColor="@color/dark_grey"
+                       android:fontFamily="@font/lato_regular"
+                       android:layout_marginLeft="5sp"
+                       android:text="Hindi"></TextView>
+
+               </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="@string/movie_brief"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"></TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:text="Release date :"></TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/rba"
+                        android:layout_marginLeft="10dp"
+                        android:text="5th November 1999"></TextView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:text="Director :"></TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/rba"
+                        android:layout_marginLeft="10dp"
+                        android:text="Suraj R. Barjatya"></TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_label"
+                android:text="STARRING"
+                android:layout_below="@+id/rl_main"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/lato_semibold"
+                android:textSize="14dp"
+                android:layout_height="wrap_content"></TextView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/recycler1"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/txt_label"
+                android:layout_height="wrap_content">
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/txt_label1"
+                android:layout_below="@+id/rl_main"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="You may also like"
+                android:textColor="@color/rba"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/lato_semibold"
+                android:textSize="14dp"
+                android:layout_height="wrap_content"></TextView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/recycler2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/txt_label"
+                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

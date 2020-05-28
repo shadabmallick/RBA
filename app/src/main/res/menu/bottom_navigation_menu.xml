@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@mipmap/house_red"
+        android:title=""
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/navigation_sms"
+        android:icon="@mipmap/search_red"
+        android:title=""
+        android:enabled="true"
+
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/event"
+        android:enabled="true"
+
+        android:icon="@mipmap/profile_red"
+        android:title="" />
+    <item
+        android:id="@+id/calender"
+        android:enabled="true"
+
+        android:icon="@mipmap/settings_red"
+        android:title="" />
+
+</menu>

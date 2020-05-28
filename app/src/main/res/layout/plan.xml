@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+
+        android:background="@color/rba">
+
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/back_white"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:fontFamily="@font/lato_regular"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img"
+            android:text="Plan"></TextView>
+
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_main">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_plan"
+                android:text="Please choose your plan"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:fontFamily="@font/lato_regular"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/curve_grey"
+                android:layout_below="@+id/txt_plan">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@android:color/black"
+                    android:text="Plan Basic">
+
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_marginRight="10dp"
+                    android:drawablePadding="10dp"
+                     android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:drawableTint="@color/rba"
+                    android:layout_alignParentRight="true"
+                    android:drawableLeft="@drawable/ic_rupee_indian"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/rba"
+                    android:text="199">
+
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="1 Month">
+
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:layout_marginRight="10dp"
+
+                    android:gravity="center"
+                    android:layout_marginTop="60dp"
+
+                    android:layout_alignParentRight="true"
+
+                    android:fontFamily="@font/lato_regular"
+
+                    android:text="Single Stream">
+
+
+                </TextView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/curve"
+                android:layout_below="@+id/rl_one">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@android:color/black"
+                    android:text="Plan Standard">
+
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:drawableTint="@color/rba"
+                    android:layout_alignParentRight="true"
+                    android:drawableLeft="@drawable/ic_rupee_indian"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/rba"
+                    android:text="499">
+
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="12 Month">
+
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:layout_marginRight="10dp"
+
+                    android:gravity="center"
+                    android:layout_marginTop="60dp"
+
+                    android:layout_alignParentRight="true"
+
+                    android:fontFamily="@font/lato_regular"
+
+                    android:text="Single Stream">
+
+
+                </TextView>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/curve_grey"
+                android:layout_below="@+id/rl_two">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@android:color/black"
+                    android:text="Plan Premium">
+
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:drawableTint="@color/rba"
+                    android:layout_alignParentRight="true"
+                    android:drawableLeft="@drawable/ic_rupee_indian"
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="@color/rba"
+                    android:text="499">
+
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="12 Month">
+
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+
+                    android:gravity="center"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginRight="10dp"
+
+                    android:layout_alignParentRight="true"
+
+                    android:fontFamily="@font/lato_regular"
+
+                    android:text="2 Simultaneous Stream">
+
+
+                </TextView>
+
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/txt_plan1"
+                android:text="CONTINUE"
+
+                android:gravity="center"
+                android:textSize="20dp"
+                android:layout_below="@+id/rl_three"
+                android:fontFamily="@font/lato_semibold"
+                android:textColor="@color/rba"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

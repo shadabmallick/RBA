@@ -10,7 +10,24 @@
     <string name="name">Name</string>
     <string name="passworrd">Password</string>
     <string name="submit">Submit</string>
+    <string name="setting">Settings</string>
     <string name="otp">OTP</string>
+    <string name="movies">MOVIES</string>
+    <string name="videos">VIDEOS</string>
+    <string name="tv_sh">TV SHOES</string>
+    <string name="rba">RBA</string>
+    <string name="share_with_friend">Share With Friends</string>
     <string name="c_password">Confirm Password</string>
+    <string name="privacy">Privacy</string>
+    <string name="terms">Terms of use</string>
+    <string name="about">About us</string>
+    <string name="faq">FAQ</string>
+    <string name="contact">Contact us</string>
+    <string name="loading">Loading</string>
+
+    <string name="logout">Logout</string>
+    <string name="movie_brief">The story centers oon a family headed by Ramkishan containing his wife Mamta
+        and three sons.The film shot in Mumbais Film City and in the villages of Rajasthan state.
+    </string>
     <string name="details">Please complete your basic details</string>
 </resources>

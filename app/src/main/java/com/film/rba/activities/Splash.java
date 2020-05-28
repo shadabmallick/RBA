@@ -9,13 +9,20 @@ import android.widget.Toast;
 
 import com.film.rba.R;
 import com.film.rba.connection.InternetConnection;
+import com.film.rba.util.GlobalClass;
+import com.film.rba.util.Shared_Preference;
 
 public class Splash extends AppCompatActivity {
     Handler handler;
+    GlobalClass globalClass;
+    Shared_Preference preference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
+        globalClass = (GlobalClass) getApplicationContext();
+        preference = new Shared_Preference(this);
+        preference.loadPrefrence();
         run();
     }
 
@@ -28,13 +35,22 @@ public class Splash extends AppCompatActivity {
             public void run() {
 
                 if (InternetConnection.checkConnection(Splash.this)) {
+
+                    if(globalClass.getLogin_status().equals(true)){
+                        Intent intent = new Intent(Splash.this, HomeScreen.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        Intent intent = new Intent(Splash.this, LoginActivity.class);
+                        //Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                     // Internet Available...
-                    Toast.makeText(Splash.this, "Internet Enabled!", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(Splash.this, "Internet Enabled!", Toast.LENGTH_SHORT).show();
                     //  Intent intent = new Intent(SplashScreenActivity.this, AppInfoActivity.class);
-                    Intent intent = new Intent(Splash.this, LoginActivity.class);
-                    //Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+
 
                 } else {
                     // Internet Not Available...
