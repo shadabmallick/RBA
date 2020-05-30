@@ -47,16 +47,18 @@ public class MovieSingle extends AppCompatActivity {
                 .playlist(playlist)
                 .build();
         mPlayerView.setup(config);
-        starringAdapter = new StarringAdapter(groceryList1, getApplicationContext());
+
+
+       /* starringAdapter = new StarringAdapter(groceryList1, getApplicationContext());
         LinearLayoutManager horizontalLayoutManager1 = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         recycler_starring.setLayoutManager(horizontalLayoutManager1);
-        recycler_starring.setAdapter(starringAdapter);
+        recycler_starring.setAdapter(starringAdapter);*/
 
 
-        likeAdapter = new LikeAdapter(groceryList1, getApplicationContext());
+       /* likeAdapter = new LikeAdapter(groceryList1, getApplicationContext());
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         recycler_like.setLayoutManager(horizontalLayoutManager);
-        recycler_like.setAdapter(likeAdapter);
+        recycler_like.setAdapter(likeAdapter);*/
 
 
         ll_back.setOnClickListener(new View.OnClickListener() {

@@ -17,7 +17,7 @@ import com.film.rba.model.Event;
 
 import java.util.List;
 
-public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.GroceryViewHolder>{
+public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.MyViewHolder>{
     private List<Event> horizontalGrocderyList;
     Context context;
 
@@ -27,22 +27,16 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.GroceryViewHol
     }
 
     @Override
-    public GroceryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflate the layout file
-        View groceryProductView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_recent, parent, false);
-        GroceryViewHolder gvh = new GroceryViewHolder(groceryProductView);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_recent, parent, false);
+        MyViewHolder gvh = new MyViewHolder(view);
         return gvh;
     }
 
     @Override
-    public void onBindViewHolder(GroceryViewHolder holder, final int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.imageView.setImageResource(horizontalGrocderyList.get(position).getProductImage());
-
-       /* holder.time.setText(horizontalGrocderyList.get(position).getTime());
-        holder.title1.setText(horizontalGrocderyList.get(position).getTitle());
-        holder.title2.setText(horizontalGrocderyList.get(position).getSubtitle());
-        holder.title4.setText(horizontalGrocderyList.get(position).getTitle1());
-        holder.title5.setText(horizontalGrocderyList.get(position).getTitle2());*/
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,22 +53,14 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.GroceryViewHol
         return horizontalGrocderyList.size();
     }
 
-    public class GroceryViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
        RelativeLayout rl_main;
         TextView title,subtitle,time,title1,title2,title4,title5;
         ImageView imageView;
-        public GroceryViewHolder(View view) {
+        public MyViewHolder(View view) {
             super(view);
-          /*  subtitle=view.findViewById(R.id.title1);
-            title=view.findViewById(R.id.title2);
-            time=view.findViewById(R.id.title3);
-
-            rl_main=view.findViewById(R.id.rl_main);
-            title1=view.findViewById(R.id.title1);
-            title2=view.findViewById(R.id.title2);*/
             imageView=view.findViewById(R.id.imageView1);
-          /*  title4=view.findViewById(R.id.title4);
-            title5=view.findViewById(R.id.title5);*/
+
         }
     }
 }

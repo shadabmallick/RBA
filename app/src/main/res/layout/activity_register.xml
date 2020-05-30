@@ -18,8 +18,8 @@
             android:layout_marginLeft="10dp"
             android:textColor="@color/rba"
             android:fontFamily="@font/poppin_extra"
+            />
 
-            ></TextView>
         <TextView
             android:id="@+id/txt_login"
             android:layout_width="wrap_content"
@@ -31,16 +31,13 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/lato_regular"
             android:layout_alignParentRight="true"
-
-
-
-
-            ></TextView>
+            />
 
         <ScrollView
             android:layout_below="@+id/txt_login"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,7 +53,7 @@
                     android:layout_gravity="center"
                     android:textSize="17dp"
                     android:textColor="#484848"
-                    android:gravity="center"></TextView>
+                    android:gravity="center"/>
 
 
                 <LinearLayout
@@ -73,12 +70,12 @@
                         android:layout_width="30dp"
                         android:src="@mipmap/user_p"
                         android:padding="5dp"
-                        android:layout_height="wrap_content"></ImageView>
+                        android:layout_height="wrap_content"/>
                     <View
                         android:layout_width="2dp"
                         android:layout_gravity="center"
                         android:background="@android:color/darker_gray"
-                        android:layout_height="40dp"></View>
+                        android:layout_height="40dp"/>
                     <EditText
                         android:id="@+id/edt_name"
                         android:layout_width="match_parent"
@@ -90,10 +87,8 @@
                         android:layout_gravity="center"
                         android:textColor="@android:color/darker_gray"
                         android:hint="@string/name"
-
                         android:background="#00000000"
-
-                        ></EditText>
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="20dp"
@@ -109,12 +104,12 @@
                         android:layout_width="30dp"
                         android:src="@mipmap/email"
                         android:padding="5dp"
-                        android:layout_height="wrap_content"></ImageView>
+                        android:layout_height="wrap_content"/>
                     <View
                         android:layout_width="2dp"
                         android:layout_gravity="center"
                         android:background="@android:color/darker_gray"
-                        android:layout_height="40dp"></View>
+                        android:layout_height="40dp"/>
                     <EditText
                         android:id="@+id/edt_email"
                         android:layout_width="match_parent"
@@ -126,10 +121,8 @@
                         android:layout_gravity="center"
                         android:textColor="@android:color/darker_gray"
                         android:hint="@string/email"
-
                         android:background="#00000000"
-
-                        ></EditText>
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="20dp"
@@ -145,12 +138,12 @@
                         android:layout_width="30dp"
                         android:src="@mipmap/mobile"
                         android:padding="5dp"
-                        android:layout_height="wrap_content"></ImageView>
+                        android:layout_height="wrap_content"/>
                     <View
                         android:layout_width="2dp"
                         android:layout_gravity="center"
                         android:background="@android:color/darker_gray"
-                        android:layout_height="40dp"></View>
+                        android:layout_height="40dp"/>
                     <EditText
                         android:id="@+id/edt_mobile"
                         android:layout_width="match_parent"
@@ -164,8 +157,7 @@
                         android:hint="@string/mobile"
                         android:inputType="number"
                         android:background="#00000000"
-
-                        ></EditText>
+                        />
                 </LinearLayout>
 
 
@@ -179,31 +171,27 @@
                     android:padding="10dp"
                     android:orientation="horizontal"
                     android:background="@drawable/curve_text"
-
                     >
-
-
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
-
                         >
+
                         <ImageView
                             android:id="@+id/img1"
                             android:layout_width="30dp"
                             android:src="@mipmap/password"
                             android:padding="5dp"
                             android:layout_marginTop="5dp"
-                            android:layout_height="30dp"></ImageView>
+                            android:layout_height="30dp"/>
                         <View
                             android:id="@+id/view1"
                             android:layout_width="2dp"
                             android:layout_toRightOf="@+id/img1"
                             android:layout_gravity="center"
                             android:background="@android:color/darker_gray"
-                            android:layout_height="40dp"></View>
+                            android:layout_height="40dp"/>
 
                         <EditText
                             android:id="@+id/edt_pass"
@@ -219,29 +207,26 @@
                             android:layout_gravity="center"
                             android:layout_toLeftOf="@+id/view2"
                             android:hint="@string/passworrd"
-
                             android:background="#00000000"
+                            />
 
-                            ></EditText>
                         <View
                             android:id="@+id/view2"
                             android:layout_width="2dp"
                             android:layout_gravity="center"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="40dp"
-
                             android:background="@android:color/darker_gray"
-                            android:layout_height="40dp"></View>
+                            android:layout_height="40dp"/>
 
                         <ImageView
                             android:id="@+id/iv_eye"
-                            android:layout_width="20dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_height="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:padding="5dp"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:src="@mipmap/invisible"
-
 
                             />
 
@@ -281,10 +266,6 @@
 
         </ScrollView>
 
-
-
     </RelativeLayout>
-
-
 
 </RelativeLayout>

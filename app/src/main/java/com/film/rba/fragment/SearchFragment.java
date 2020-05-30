@@ -18,8 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.film.rba.R;
-import com.film.rba.adapter.EventAdapter;
-import com.film.rba.adapter.MostViewed;
+import com.film.rba.adapter.MostViewedAdapter;
 import com.film.rba.adapter.SearchAdapter;
 import com.film.rba.model.Event;
 import com.google.android.material.tabs.TabLayout;
@@ -37,7 +36,7 @@ public class SearchFragment extends Fragment  {
    // private List<notice> groceryList = new ArrayList<>();
     private List<Event> groceryList1 = new ArrayList<>();
     private RecyclerView groceryRecyclerView,recyclerView,recyclerView2;
-    private MostViewed groceryAdapter;
+    private MostViewedAdapter groceryAdapter;
     private SearchAdapter eventAdapter;
     Toolbar toolbar;
     private static final int AUTO_SCROLL_THRESHOLD_IN_MILLI = 3000;
@@ -60,9 +59,11 @@ public class SearchFragment extends Fragment  {
 
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3,LinearLayoutManager.VERTICAL,false);
-        groceryRecyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
-        eventAdapter = new SearchAdapter(groceryList1, getActivity());
-        groceryRecyclerView.setAdapter(eventAdapter);
+        //groceryRecyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
+        //eventAdapter = new SearchAdapter(groceryList1, getActivity());
+        //groceryRecyclerView.setAdapter(eventAdapter);
+
+
         return view;
     }
 /*

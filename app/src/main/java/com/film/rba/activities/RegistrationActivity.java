@@ -27,13 +27,10 @@ import com.film.rba.networkService.AppConfig;
 import com.film.rba.util.GlobalClass;
 import com.film.rba.util.Shared_Preference;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.film.rba.networkService.AppConfig.register;
 
 public class RegistrationActivity extends AppCompatActivity {
     String TAG="register";
@@ -50,7 +47,7 @@ public class RegistrationActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_activity);
+        setContentView(R.layout.activity_register);
         globalClass = (GlobalClass) getApplicationContext();
         preference = new Shared_Preference(this);
         preference.loadPrefrence();
@@ -116,9 +113,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 if (!edtPassword.getText().toString().isEmpty()) {
                                     if (!edt_mobile.getText().toString().isEmpty()) {
 
-
                                             Register(name,email,mobile,password);
-
 
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Mobile is Empty", Toast.LENGTH_LONG).show();
@@ -143,15 +138,16 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
     }
-    private void Register(final String name, final String email,String mobile,String password) {
+    private void Register(final String name, final String email, String mobile,
+                          String password) {
+
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
         progressDialog.show();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_DEV+register, new Response.Listener<String>() {
-
+                AppConfig.register, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -161,13 +157,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 Gson gson = new Gson();
 
-                try
-                {
-
+                try {
 
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
                     Boolean status = jobj.get("success").getAsBoolean();
-                    //  String  user_image_url = jobj.get("user_image_url").getAsString().replaceAll("\"", "");
 
                     Log.d(TAG, "status: "+status);
 
@@ -209,11 +202,8 @@ public class RegistrationActivity extends AppCompatActivity {
                         Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);                            startActivity(intent);
 
+                    } else if(status==false){
 
-
-
-                    }
-                    else if(status==false){
                         edtPassword.setText("");
                         edt_email.setText("");
                         edt_mobile.setText("");
@@ -223,18 +213,12 @@ public class RegistrationActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
                     }
 
-
-
-
-
-
                 }catch (Exception e) {
 
                     Toast.makeText(getApplicationContext(),"Incorrect Client ID/Password", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
 
                 }
-
 
             }
         }, new Response.ErrorListener() {
@@ -253,7 +237,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
 
-
                 params.put("login_by", "facebook");
                 params.put("email", email);
                 params.put("password",password);
@@ -264,8 +247,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 params.put("social_unique_id","required if the social media");
                 params.put("gender","");
 
-
                 Log.d(TAG, "login param: "+params);
+
                 return params;
             }
 

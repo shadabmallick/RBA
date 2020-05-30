@@ -29,50 +29,15 @@ public class GlobalClass extends Application {
     String phone_number;
     String deviceid;
     String profil_pic;
-    String fname;
-    String lname;
-
-
-
     String gender;
 
-
-
     String token_expiry;
+    String token;
     String login_by ;
     String user_type;
     String social_unique;
     String push_status;
 
-    public String getDepartment_ids() {
-        return department_ids;
-    }
-
-    public void setDepartment_ids(String department_ids) {
-        this.department_ids = department_ids;
-    }
-
-    String department_ids;
-
-    public String getGroup_ids() {
-        return group_ids;
-    }
-
-    public void setGroup_ids(String group_ids) {
-        this.group_ids = group_ids;
-    }
-
-    String group_ids;
-
-    public String getRole_ids() {
-        return role_ids;
-    }
-
-    public void setRole_ids(String role_ids) {
-        this.role_ids = role_ids;
-    }
-
-    String role_ids;
 
     public String getEnquiry_base_id() {
         return enquiry_base_id;
@@ -81,6 +46,7 @@ public class GlobalClass extends Application {
     public void setEnquiry_base_id(String enquiry_base_id) {
         this.enquiry_base_id = enquiry_base_id;
     }
+
     public String getGender() {
         return gender;
     }
@@ -111,7 +77,12 @@ public class GlobalClass extends Application {
     String islogin;
 
     public String device_type = "Android";
-    public String login_from= "";
+    public String login_from = "";
+
+
+
+
+
     public RequestQueue mRequestQueue;
 
     public static synchronized GlobalClass getInstance() {
@@ -127,7 +98,6 @@ public class GlobalClass extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-//        TypefaceUtil.overrideFont(getApplicationContext(), "lato_medium", "fonts/lato_medium.ttf");
 
     }
 
@@ -138,6 +108,7 @@ public class GlobalClass extends Application {
 
         return mRequestQueue;
     }
+
 
     public String getToken_expiry() {
         return token_expiry;
@@ -185,21 +156,6 @@ public class GlobalClass extends Application {
 
     public void setDevice_type(String device_type) {
         this.device_type = device_type;
-    }
-    public String getFname() {
-        return fname;
-    }
-
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
     }
 
     public Boolean getLogin_status() {
@@ -258,8 +214,16 @@ public class GlobalClass extends Application {
         this.login_from = login_from;
     }
 
+    public String getToken() {
+        return token;
+    }
 
-    /////////////////////
+    public GlobalClass setToken(String token) {
+        this.token = token;
+        return this;
+    }
+
+/////////////////////
 
     public boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -17,8 +17,6 @@ public class PlanActvity extends AppCompatActivity {
         setContentView(R.layout.plan);
 
 
-
-
     }
 
 

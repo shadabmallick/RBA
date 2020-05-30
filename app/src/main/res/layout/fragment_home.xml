@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RBA"
+                    android:textSize="30sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/rba"
+                    android:fontFamily="@font/poppin_extra"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txt_movies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/lato_semibold"
+                        android:text="@string/movies"
+                        android:textColor="@color/rba"
+                        android:textSize="14sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/txt_videos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/videos"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="20dp"
+                        android:textColor="@color/rba"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/lato_semibold"
+                        />
+
+                    <TextView
+                        android:id="@+id/txt_tv_shows"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tv_sh"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/rba"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/lato_semibold"
+                        />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_recent_views"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_main"
+                >
+
+                <TextView
+                    android:id="@+id/txt_label"
+                    android:text="Recently Viewed"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/rba"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/show_more_recent"
+                    android:text="Show All"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/dark_grey"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recycler1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/txt_label"
+                    android:layout_height="wrap_content"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_most_watched"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_recent_views"
+                >
+
+                <TextView
+                    android:id="@+id/txt_label2"
+                    android:text="Most Watched"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/rba"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_most_watched"
+                    android:text="Show All"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/dark_grey"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recycler2"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/txt_label2"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_trending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_most_watched"
+                >
+
+                <TextView
+                    android:id="@+id/txt_label4"
+                    android:text="Trending Now"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/rba"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_show_trending"
+                    android:text="Show All"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/dark_grey"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recycler3"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/txt_label4"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_wishlist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_trending"
+                >
+
+                <TextView
+                    android:id="@+id/txt_label6"
+                    android:text="Wish List"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/rba"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_show_wishlist"
+                    android:text="Show All"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/dark_grey"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recycler4"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/txt_label6"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_popular_rba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_wishlist"
+                >
+
+                <TextView
+                    android:id="@+id/txt_label7"
+                    android:text="Popular on RBA"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/rba"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_show_popular"
+                    android:text="Show All"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/dark_grey"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/lato_semibold"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recycler5"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/txt_label7"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+</RelativeLayout>

@@ -35,14 +35,10 @@ public class HomeScreen extends AppCompatActivity {
     RelativeLayout rel_tool;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
-
-
-
 
         view1=findViewById(R.id.viewid_1);
 
@@ -53,7 +49,6 @@ public class HomeScreen extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
-        //I added this if statement to keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
                     new HomeFragment()).commit();
@@ -68,16 +63,19 @@ public class HomeScreen extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     switch (item.getItemId()) {
+
                         case R.id.navigation_home:
 
-                                switchToFragment2();
+                            switchToFragment2();
 
                             view1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
                             view2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                             view3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                             view4.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                             break;
-                       case R.id.navigation_sms:
+
+                        case R.id.navigation_sms:
+
                            switchToFragment1();
 
                            view1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
@@ -85,28 +83,27 @@ public class HomeScreen extends AppCompatActivity {
                            view3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                            view4.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                             break;
-                       case R.id.event:
+
+                        case R.id.event:
+
                            switchToFragment3();
 
                            view1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                            view2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                            view3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
                            view4.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-                            break;
+                           break;
 
-                            case R.id.calender:
-                                switchToFragment4();
-                                view1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-                           view2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-                           view3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-                           view4.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
-                            break;
+                        case R.id.calender:
 
+                            switchToFragment4();
+                            view1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+                            view2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+                            view3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+                            view4.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+                            break;
 
                     }
-
-                  /*  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();*/
 
                     return true;
                 }
@@ -134,48 +131,6 @@ public class HomeScreen extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new SettingFragment()).commit();
     }
-  /*  public void switchToFragment1() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-    }
 
-    public void switchToFragment2() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.fragment_container, new NewsFragment()).commit();
-    }
-
-    public void switchToFragment3() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.fragment_container, new EventFragment()).commit();
-    }
-
-
-    public void switchToFragment4() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.fragment_container, new MessageFragment()).commit();
-    }
-
-    public void switchToFragment5() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.fragment_container, new CalenderFragment()).commit();
-    }
-
-
-    public void switchToFragment6() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-    }
-
-
-    public void switchToFragment7() {
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.fragment_container, new SettingFragment()).commit();
-    }
-*/
-   /* public void setToolbarTitle(String title) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
-    }*/
-
-    }
+}
 

@@ -27,8 +27,8 @@ public class JustArrivedActvity extends AppCompatActivity {
         populategroceryList1();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),3, LinearLayoutManager.VERTICAL,false);
         groceryRecyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
-        eventAdapter = new SearchAdapter(groceryList1, getApplicationContext());
-        groceryRecyclerView.setAdapter(eventAdapter);
+        //eventAdapter = new SearchAdapter(groceryList1, getApplicationContext());
+        //groceryRecyclerView.setAdapter(eventAdapter);
     }
 
     private void populategroceryList1(){

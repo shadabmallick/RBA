@@ -12,45 +12,52 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.film.rba.R;
 import com.film.rba.model.Video;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder>{
-    private ArrayList<Video> videoList;
-    Context context;
+public class MostViewedAdapter extends RecyclerView.Adapter<MostViewedAdapter.MyViewHolder>{
+    private List<Video> arrayList;
+    private Context context;
 
-    public SearchAdapter(ArrayList<Video> videoList, Context context){
-        this.videoList= videoList;
+    public MostViewedAdapter(List<Video> arrayList, Context context){
+        this.arrayList = arrayList;
         this.context = context;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //inflate the layout file
-        View groceryProductView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_search, parent, false);
-        MyViewHolder gvh = new MyViewHolder(groceryProductView);
-        return gvh;
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.most_watch, parent, false);
+        MyViewHolder myViewHolder = new MyViewHolder(view);
+        return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
+        Video video = arrayList.get(position);
 
+        Picasso.get().load(video.getDefault_image()).into(holder.imageView);
+
+        holder.tv_name.setText(video.getTitle());
 
     }
 
     @Override
     public int getItemCount() {
-        return videoList.size();
+        return arrayList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-       RelativeLayout rl_main;
-        TextView title,subtitle,time,title1,title2,title4,title5;
+
+        TextView tv_name;
         ImageView imageView;
         public MyViewHolder(View view) {
             super(view);
             imageView=view.findViewById(R.id.imageView1);
+            tv_name=view.findViewById(R.id.tv_name);
+
         }
     }
 }

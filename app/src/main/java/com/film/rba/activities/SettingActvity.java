@@ -22,7 +22,7 @@ import java.util.List;
 
 public class SettingActvity extends AppCompatActivity {
     TextView txt_plan;
-    CardView logout;
+
     GlobalClass globalClass;
     Shared_Preference preference;
 
@@ -30,25 +30,16 @@ public class SettingActvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+
         globalClass = (GlobalClass) getApplicationContext();
         preference = new Shared_Preference(this);
         preference.loadPrefrence();
         txt_plan=findViewById(R.id.txt_plan);
-        logout=findViewById(R.id.logout);
+
         txt_plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),PlanActvity.class);
-                startActivity(intent);
-            }
-        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                preference.clearPrefrence();
-                Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
-
                 startActivity(intent);
             }
         });

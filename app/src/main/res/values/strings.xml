@@ -12,6 +12,8 @@
     <string name="submit">Submit</string>
     <string name="setting">Settings</string>
     <string name="otp">OTP</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
     <string name="movies">MOVIES</string>
     <string name="videos">VIDEOS</string>
     <string name="tv_sh">TV SHOES</string>
@@ -19,6 +21,7 @@
     <string name="share_with_friend">Share With Friends</string>
     <string name="c_password">Confirm Password</string>
     <string name="privacy">Privacy</string>
+    <string name="change_password">Change Password</string>
     <string name="terms">Terms of use</string>
     <string name="about">About us</string>
     <string name="faq">FAQ</string>

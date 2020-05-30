@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -15,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,21 +26,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.film.rba.R;
 import com.film.rba.activities.JustArrivedActvity;
-import com.film.rba.activities.TrendingActvity;
 import com.film.rba.adapter.BannerAdapter;
-import com.film.rba.adapter.EventAdapter;
-import com.film.rba.adapter.MostViewed;
-import com.film.rba.adapter.TopScrollAdapter;
+import com.film.rba.adapter.MostViewedAdapter;
+import com.film.rba.adapter.RecommendedAdapter;
 import com.film.rba.adapter.TrendingAdapter;
 import com.film.rba.model.Event;
 
+import com.film.rba.model.Video;
 import com.film.rba.networkService.AppConfig;
 import com.film.rba.util.GlobalClass;
 import com.film.rba.util.Shared_Preference;
-import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,76 +48,96 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static android.content.ContentValues.TAG;
-import static com.film.rba.networkService.AppConfig.home;
-import static java.lang.System.exit;
 
 public class HomeFragment extends Fragment  {
-    View view;
-    TextView tool_title,show_more_recent,show_more_watch;
-    ImageView img_profile,back;
-    LinearLayout ll_profile,ll_setting;
-    RelativeLayout rel_tool;
-    GlobalClass globalClass;
-   Shared_Preference preference;
-    private List<Event> groceryList1 = new ArrayList<>();
-    private RecyclerView groceryRecyclerView,recyclerView,recyclerView2,recyclertop;
-    private MostViewed groceryAdapter;
-    private EventAdapter eventAdapter;
-    private TrendingAdapter trendingActvity;
+
+    private GlobalClass globalClass;
+    private Shared_Preference preference;
+
+    private RelativeLayout rel_recent_views, rel_most_watched, rel_trending, rel_wishlist, rel_popular_rba;
+    private TextView show_more_recent, tv_most_watched, tv_show_trending, tv_show_wishlist, tv_show_popular;
+    private RecyclerView recycler1, recycler2, recycler3, recycler4, recycler5;
+
     private BannerAdapter topScrollAdapter;
-    Toolbar toolbar;
-    ArrayList<HashMap<String,String>> banner_list;
-    ArrayList<HashMap<String,String>> wish_list;
-    ArrayList<HashMap<String,String>> trending_list;
-    ArrayList<HashMap<String,String>> history_list;
-    ArrayList<HashMap<String,String>> suggestion_list;
-    ArrayList<HashMap<String,String>> most_viewed_list;
-    private static final int AUTO_SCROLL_THRESHOLD_IN_MILLI = 3000;
-    GridView androidGridView;
-    TabLayout tabs;
-    ViewPager viewPager;
+    private ArrayList<HashMap<String,String>> banner_list;
+    private ArrayList<Video> wish_ArrayList, trending_ArrayList, history_ArrayList, suggestion_ArrayList, most_viewed_ArrayList;
+
+    private ViewPager viewPager;
     private static int NUM_PAGES = 5;
     private Runnable Update;
-    int currentPage = 0;
+    private int currentPage = 0;
     private Timer swipeTimer;
     private Handler handler = new Handler();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.home_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        initViews(view);
 
-      //  rel_tool=getActivity().findViewById(R.id.rel_tool);
-     //   rel_tool.setVisibility(View.GONE);
-        globalClass = (GlobalClass)getActivity().getApplicationContext();
+
+
+
+        return view;
+    }
+
+    private void initViews(View view){
+        globalClass = (GlobalClass) getActivity().getApplicationContext();
         preference = new Shared_Preference(getActivity());
         preference.loadPrefrence();
-         recyclerView=view.findViewById(R.id.recycler1);
-        groceryRecyclerView=view.findViewById(R.id.recycler2);
-        recyclerView2=view.findViewById(R.id.recycler3);
+
+
+        recycler1 = view.findViewById(R.id.recycler1);// recent views // history
+        recycler2 = view.findViewById(R.id.recycler2);// most watches // suggestion
+        recycler3 = view.findViewById(R.id.recycler3);// trending
+        recycler4 = view.findViewById(R.id.recycler4);// wish list
+        recycler5 = view.findViewById(R.id.recycler5);// popular on rba // most viewed
+
+        show_more_recent = view.findViewById(R.id.show_more_recent);
+        tv_most_watched = view.findViewById(R.id.tv_most_watched);
+        tv_show_popular = view.findViewById(R.id.tv_show_popular);
+        tv_show_trending = view.findViewById(R.id.tv_show_trending);
+        tv_show_wishlist = view.findViewById(R.id.tv_show_wishlist);
+
+        rel_most_watched = view.findViewById(R.id.rel_most_watched);
+        rel_recent_views = view.findViewById(R.id.rel_recent_views);
+        rel_popular_rba = view.findViewById(R.id.rel_popular_rba);
+        rel_trending = view.findViewById(R.id.rel_trending);
+        rel_wishlist = view.findViewById(R.id.rel_wishlist);
+
+        //rel_most_watched.setVisibility(View.GONE);
+        //rel_recent_views.setVisibility(View.GONE);
+        //rel_popular_rba.setVisibility(View.GONE);
+        //rel_trending.setVisibility(View.GONE);
+        //rel_wishlist.setVisibility(View.GONE);
+
         viewPager = view.findViewById(R.id.viewPager);
 
-        show_more_recent=view.findViewById(R.id.show_more_recent);
-        show_more_watch=view.findViewById(R.id.txt_label3);
+
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recycler1.setLayoutManager(layoutManager1);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recycler2.setLayoutManager(layoutManager2);
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recycler3.setLayoutManager(layoutManager3);
+        LinearLayoutManager layoutManager4 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recycler4.setLayoutManager(layoutManager4);
+        LinearLayoutManager layoutManager5 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recycler5.setLayoutManager(layoutManager5);
+
+
         banner_list = new ArrayList<>();
-        wish_list = new ArrayList<>();
-        trending_list = new ArrayList<>();
-        history_list = new ArrayList<>();
-        suggestion_list = new ArrayList<>();
-        most_viewed_list = new ArrayList<>();
-        populategroceryList1();
-        BannerList();
-
-
-        LinearLayoutManager horizontalLayoutManager1 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(horizontalLayoutManager1);
+        wish_ArrayList = new ArrayList<>();
+        trending_ArrayList = new ArrayList<>();
+        history_ArrayList = new ArrayList<>();
+        suggestion_ArrayList = new ArrayList<>();
+        most_viewed_ArrayList = new ArrayList<>();
 
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
                 // addDot(i);
-
             }
             @Override
             public void onPageSelected(int i) {
@@ -136,39 +151,22 @@ public class HomeFragment extends Fragment  {
 
 
 
-        groceryAdapter = new MostViewed(groceryList1, getActivity());
-        LinearLayoutManager horizontalLayoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        groceryRecyclerView.setLayoutManager(horizontalLayoutManager2);
-        groceryRecyclerView.setAdapter(groceryAdapter);
-
-
-        trendingActvity = new TrendingAdapter(groceryList1, getActivity());
-        LinearLayoutManager horizontalLayoutManager3 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView2.setLayoutManager(horizontalLayoutManager3);
-        recyclerView2.setAdapter(trendingActvity);
         show_more_recent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent show_more=new Intent(getActivity(), JustArrivedActvity.class);
-                        startActivity(show_more);
-            }
-        });
-        show_more_watch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent show_more=new Intent(getActivity(), JustArrivedActvity.class);
-                        startActivity(show_more);
+                startActivity(show_more);
             }
         });
 
-        return view;
+        getHomeData();
     }
+
+
+
     private void initViewPager(ArrayList<HashMap<String,String>> banner_list){
         topScrollAdapter = new BannerAdapter(getActivity(),banner_list);
         viewPager.setAdapter(topScrollAdapter);
-
-
-
 
         NUM_PAGES = banner_list.size();
 
@@ -181,330 +179,242 @@ public class HomeFragment extends Fragment  {
 
         handler.removeCallbacks(Update);
 
-
         if (swipeTimer == null){
             swipeTimer = new Timer();
-
             swipeTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     handler.post(Update);
                 }
             }, 4000, 4000);
-
             handler.postDelayed(Update,4000);
         }
 
     }
 
-    private void populategroceryList1(){
-        groceryList1.clear();
-        Event event1 = new Event("April 23rd Saturday ","Weekend Hutong tour",
-                "Start: 10am@South Gate",R.mipmap.mov_img1,"Duration: 6hrs","Fees: Free");
-
-        Event event2 = new Event("April 23rd Saturday ","Weekend Hutong tour",
-                "Start: 10am@South Gate",R.mipmap.mov_img2,"Duration: 6hrs","Fees: Free");
-        Event event3 = new Event("April 23rd Saturday ","Weekend Hutong tour",
-                "Start: 10am@South Gate",R.mipmap.mov_img3,"Duration: 6hrs","Fees: Free");
-
-
-
-        groceryList1.add(event1);
-        groceryList1.add(event2);
-        groceryList1.add(event3);
-        groceryList1.add(event1);
-        groceryList1.add(event2);
-        groceryList1.add(event3);
-       // eventAdapter.notifyDataSetChanged();
-    }
-
-
     @Override
     public void onResume() {
         super.onResume();
-
     }
-    private void BannerList() {        // Tag used to cancel the request
+
+    private void getHomeData() {
         String tag_string_req = "req_login";
 
-
         StringRequest strReq = new StringRequest(Request.Method.GET,
-                AppConfig.URL_DEV+home, new Response.Listener<String>() {
-
+                AppConfig.home, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response.toString());
+                Log.d(TAG, "home Response: " + response.toString());
 
+                try {
 
+                    JSONObject main_object = new JSONObject(response);
 
-                Gson gson = new Gson();
+                    boolean status = main_object.optBoolean("success");
+                    if(status) {
 
-                try
-                {
-                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
-                    Boolean status = jobj.get("success").getAsBoolean();
-                    if(status==true) {
-                        JsonObject data=jobj.getAsJsonObject("data");
-                        JsonObject banner=data.getAsJsonObject("banner");
-                        String name = banner.get("name").getAsString().replaceAll("\"", "");
-                        String key = banner.get("key").getAsString().replaceAll("\"", "");
+                        JSONObject data = main_object.getJSONObject("data");
+                        JSONObject banner = data.getJSONObject("banner");
+                        String name = banner.optString("name");
+                        String key = banner.optString("key");
 
-                        JsonArray categories=banner.getAsJsonArray("list");
+                        JSONArray categories = banner.getJSONArray("list");
                         if(categories != null ){
-                            for (int j = 0; j < categories.size(); j++) {
-                                JsonObject images1 = categories.get(j).getAsJsonObject();
-                                String admin_video_id = images1.get("admin_video_id").toString().replaceAll("\"", "");
-                                String title = images1.get("title").toString().replaceAll("\"", "");
-                                String default_image = images1.get("default_image").toString().replaceAll("\"", "");
-                                int ratings = Integer.parseInt(images1.get("ratings").toString().replaceAll("\"", ""));
+                            for (int j = 0; j < categories.length(); j++) {
+                                JSONObject banners = categories.getJSONObject(j);
+                                String admin_video_id = banners.optString("admin_video_id");
+                                String title = banners.optString("title");
+                                String default_image = banners.optString("default_image");
+                                String ratings = banners.optString("ratings");
+
                                 HashMap<String, String> Category = new HashMap<>();
-                                // Category.put("product_sub_id",product_sub_id);
-                                Category.put("admin_video_id",admin_video_id);
-                                Category.put("title",title);
-                                Category.put("default_image",AppConfig.image_upload+default_image);
-                                Category.put("ratings", String.valueOf(ratings));
+                                Category.put("admin_video_id", admin_video_id);
+                                Category.put("title", title);
+                                Category.put("default_image", AppConfig.image_url + default_image);
+                                Category.put("ratings", ratings);
                                 banner_list.add(Category);
                                 initViewPager(banner_list);
 
-
                             }
-
-                            ///Adapter
 
                         }
 
-                        JsonObject wishlist=data.getAsJsonObject("wishlist");
-                        String wname = wishlist.get("name").getAsString().replaceAll("\"", "");
-                        String wkey = wishlist.get("key").getAsString().replaceAll("\"", "");
-                        JsonObject list=wishlist.getAsJsonObject("list");
-                        int totalvideo = Integer.parseInt(list.get("totalvideo").toString().replaceAll("\"", ""));
-                        JsonArray videos=list.getAsJsonArray("videos");
+                        JSONObject wishlist = data.getJSONObject("wishlist");
+                        String wname = wishlist.optString("name");
+                        String wkey = wishlist.optString("key");
+                        JSONObject list = wishlist.getJSONObject("list");
+                        int totalvideo = list.optInt("totalvideo");
+                        if (totalvideo > 0){
+                            rel_wishlist.setVisibility(View.VISIBLE);
+                        }
+                        JSONArray videos = list.getJSONArray("videos");
                         if(videos != null ){
-                            for (int j = 0; j < videos.size(); j++) {
-                                JsonObject images1 = videos.get(j).getAsJsonObject();
-                                String admin_video_id = images1.get("admin_video_id").toString().replaceAll("\"", "");
-                                String title = images1.get("title").toString().replaceAll("\"", "");
-                                String description = images1.get("description").toString().replaceAll("\"", "");
-                                String duration = images1.get("duration").toString().replaceAll("\"", "");
-                                String third_image = images1.get("third_image").toString().replaceAll("\"", "");
-                                String category_name = images1.get("category_name").toString().replaceAll("\"", "");
-                                String default_image = images1.get("default_image").toString().replaceAll("\"", "");
-                                String publish_time = images1.get("publish_time").toString().replaceAll("\"", "");
-                                int category_id = Integer.parseInt(images1.get("category_id").toString().replaceAll("\"", ""));
-                                int watch_count = Integer.parseInt(images1.get("watch_count").toString().replaceAll("\"", ""));
-                                int ratings = Integer.parseInt(images1.get("ratings").toString().replaceAll("\"", ""));
-                                HashMap<String, String> Category = new HashMap<>();
-                                // Category.put("product_sub_id",product_sub_id);
-                                Category.put("admin_video_id",admin_video_id);
-                                Category.put("title",title);
-                                Category.put("description",description);
-                                Category.put("duration",duration);
-                                Category.put("third_image",third_image);
-                                Category.put("category_name",category_name);
-                                Category.put("default_image",AppConfig.image_upload+default_image);
-                                Category.put("publish_time",publish_time);
-                                Category.put("category_id", String.valueOf(category_id));
-                                Category.put("watch_count", String.valueOf(watch_count));
-                                Category.put("ratings", String.valueOf(ratings));
-                                 wish_list.add(Category);
+                            for (int j = 0; j < videos.length(); j++) {
+                                JSONObject object = videos.getJSONObject(j);
 
+                                Video video = new Video();
+                                video.setId(object.optString("admin_video_id"));
+                                video.setTitle(object.optString("title"));
+                                video.setDescription(object.optString("description"));
+                                video.setThird_image(AppConfig.image_url+object.optString("third_image"));
+                                video.setDuration(object.optString("duration"));
+                                video.setRatings(object.optString("ratings"));
+                                video.setDefault_image(AppConfig.image_url+object.optString("default_image"));
+                                video.setCategory_id(object.optString("category_id"));
+                                video.setCategory_name(object.optString("category_name"));
+                                video.setWatch_count(object.optString("watch_count"));
+                                video.setPublish_time(object.optString("publish_time"));
+
+                                wish_ArrayList.add(video);
 
                             }
-/////////////////////////////////////Adapter
-                            eventAdapter = new EventAdapter(wish_list, getActivity());
-                            recyclerView.setAdapter(eventAdapter);
-                        }
-                        JsonObject trending=data.getAsJsonObject("trending");
-                        String tname = trending.get("name").getAsString().replaceAll("\"", "");
-                        String tkey = trending.get("key").getAsString().replaceAll("\"", "");
-                        JsonObject tlist=trending.getAsJsonObject("list");
-                        int t_totalvideo = Integer.parseInt(tlist.get("totalvideo").toString().replaceAll("\"", ""));
-                        JsonArray t_videos=tlist.getAsJsonArray("videos");
-                        if(t_videos != null ){
-                            for (int j = 0; j < t_videos.size(); j++) {
-                                JsonObject images1 = t_videos.get(j).getAsJsonObject();
-                                String admin_video_id = images1.get("admin_video_id").toString().replaceAll("\"", "");
-                                String title = images1.get("title").toString().replaceAll("\"", "");
-                                String description = images1.get("description").toString().replaceAll("\"", "");
-                                String duration = images1.get("duration").toString().replaceAll("\"", "");
-                                String third_image = images1.get("third_image").toString().replaceAll("\"", "");
-                                String category_name = images1.get("category_name").toString().replaceAll("\"", "");
-                                String default_image = images1.get("default_image").toString().replaceAll("\"", "");
-                                String publish_time = images1.get("publish_time").toString().replaceAll("\"", "");
-                                int category_id = Integer.parseInt(images1.get("category_id").toString().replaceAll("\"", ""));
-                                int watch_count = Integer.parseInt(images1.get("watch_count").toString().replaceAll("\"", ""));
-                                int ratings = Integer.parseInt(images1.get("ratings").toString().replaceAll("\"", ""));
-                                HashMap<String, String> Category = new HashMap<>();
-                                // Category.put("product_sub_id",product_sub_id);
-                                Category.put("admin_video_id",admin_video_id);
-                                Category.put("title",title);
-                                Category.put("description",description);
-                                Category.put("duration",duration);
-                                Category.put("third_image",third_image);
-                                Category.put("category_name",category_name);
-                                Category.put("default_image",default_image);
-                                Category.put("publish_time",publish_time);
-                                Category.put("category_id", String.valueOf(category_id));
-                                Category.put("watch_count", String.valueOf(watch_count));
-                                Category.put("ratings", String.valueOf(ratings));
-                                wish_list.add(Category);
-                                // Array_category.add(Category);
 
-
-                            }
-/////////////////////////////////////Adapter
-                        }
-
-                        JsonObject history=data.getAsJsonObject("history");
-                        String hname = history.get("name").getAsString().replaceAll("\"", "");
-                        String hkey = history.get("key").getAsString().replaceAll("\"", "");
-                        JsonObject hlist=history.getAsJsonObject("list");
-                        int h_totalvideo = Integer.parseInt(hlist.get("totalvideo").toString().replaceAll("\"", ""));
-                        JsonArray h_videos=hlist.getAsJsonArray("videos");
-                        if(t_videos != null ){
-                            for (int j = 0; j < h_videos.size(); j++) {
-                                JsonObject images1 = h_videos.get(j).getAsJsonObject();
-                                String admin_video_id = images1.get("admin_video_id").toString().replaceAll("\"", "");
-                                String title = images1.get("title").toString().replaceAll("\"", "");
-                                String description = images1.get("description").toString().replaceAll("\"", "");
-                                String duration = images1.get("duration").toString().replaceAll("\"", "");
-                                String third_image = images1.get("third_image").toString().replaceAll("\"", "");
-                                String category_name = images1.get("category_name").toString().replaceAll("\"", "");
-                                String default_image = images1.get("default_image").toString().replaceAll("\"", "");
-                                String publish_time = images1.get("publish_time").toString().replaceAll("\"", "");
-                                int category_id = Integer.parseInt(images1.get("category_id").toString().replaceAll("\"", ""));
-                                int watch_count = Integer.parseInt(images1.get("watch_count").toString().replaceAll("\"", ""));
-                                int ratings = Integer.parseInt(images1.get("ratings").toString().replaceAll("\"", ""));
-                                HashMap<String, String> Category = new HashMap<>();
-                                // Category.put("product_sub_id",product_sub_id);
-                                Category.put("admin_video_id",admin_video_id);
-                                Category.put("title",title);
-                                Category.put("description",description);
-                                Category.put("duration",duration);
-                                Category.put("third_image",third_image);
-                                Category.put("category_name",category_name);
-                                Category.put("default_image",default_image);
-                                Category.put("publish_time",publish_time);
-                                Category.put("category_id", String.valueOf(category_id));
-                                Category.put("watch_count", String.valueOf(watch_count));
-                                Category.put("ratings", String.valueOf(ratings));
-                                wish_list.add(Category);
-                                // Array_category.add(Category);
-
-
-                            }
-/////////////////////////////////////Adapter
                         }
 
 
-                        JsonObject suggestion=data.getAsJsonObject("suggestion");
-                        String sname = suggestion.get("name").getAsString().replaceAll("\"", "");
-                        String skey = suggestion.get("key").getAsString().replaceAll("\"", "");
-                        JsonObject slist=suggestion.getAsJsonObject("list");
-                        int s_totalvideo = Integer.parseInt(slist.get("totalvideo").toString().replaceAll("\"", ""));
-                        JsonArray s_videos=slist.getAsJsonArray("videos");
+
+                        JSONObject trending = data.getJSONObject("trending");
+                        String tname = trending.optString("name");
+                        String tkey = trending.optString("key");
+                        JSONObject tlist = trending.getJSONObject("list");
+                        int t_totalvideo = tlist.optInt("totalvideo");
+                        if (t_totalvideo > 0){
+                            rel_trending.setVisibility(View.VISIBLE);
+                        }
+                        JSONArray t_videos = tlist.getJSONArray("videos");
+                        if(t_videos != null){
+                            for (int j = 0; j < t_videos.length(); j++) {
+                                JSONObject object = t_videos.getJSONObject(j);
+
+                                Video video = new Video();
+                                video.setId(object.optString("admin_video_id"));
+                                video.setTitle(object.optString("title"));
+                                video.setDescription(object.optString("description"));
+                                video.setThird_image(AppConfig.image_url+object.optString("third_image"));
+                                video.setDuration(object.optString("duration"));
+                                video.setRatings(object.optString("ratings"));
+                                video.setDefault_image(AppConfig.image_url+object.optString("default_image"));
+                                video.setCategory_id(object.optString("category_id"));
+                                video.setCategory_name(object.optString("category_name"));
+                                video.setWatch_count(object.optString("watch_count"));
+                                video.setPublish_time(object.optString("publish_time"));
+
+                                trending_ArrayList.add(video);
+                            }
+                        }
+
+
+                        JSONObject history = data.getJSONObject("history");
+                        String hname = history.optString("name");
+                        String hkey = history.optString("key");
+                        JSONObject hlist = history.getJSONObject("list");
+                        int h_totalvideo = hlist.optInt("totalvideo");
+                        if (h_totalvideo > 0){
+                            rel_recent_views.setVisibility(View.VISIBLE);
+                        }
+                        JSONArray h_videos = hlist.getJSONArray("videos");
+                        if(h_videos != null ){
+                            for (int j = 0; j < h_videos.length(); j++) {
+                                JSONObject object = h_videos.getJSONObject(j);
+
+                                Video video = new Video();
+                                video.setId(object.optString("admin_video_id"));
+                                video.setTitle(object.optString("title"));
+                                video.setDescription(object.optString("description"));
+                                video.setThird_image(AppConfig.image_url+object.optString("third_image"));
+                                video.setDuration(object.optString("duration"));
+                                video.setRatings(object.optString("ratings"));
+                                video.setDefault_image(AppConfig.image_url+object.optString("default_image"));
+                                video.setCategory_id(object.optString("category_id"));
+                                video.setCategory_name(object.optString("category_name"));
+                                video.setWatch_count(object.optString("watch_count"));
+                                video.setPublish_time(object.optString("publish_time"));
+
+                                history_ArrayList.add(video);
+
+                            }
+                        }
+
+
+                        JSONObject suggestion = data.getJSONObject("suggestion");
+                        String sname = suggestion.optString("name");
+                        String skey = suggestion.optString("key");
+                        JSONObject slist = suggestion.getJSONObject("list");
+                        int s_totalvideo = slist.optInt("totalvideo");
+                        if (s_totalvideo > 0){
+                            rel_most_watched.setVisibility(View.VISIBLE);
+                        }
+                        JSONArray s_videos = slist.getJSONArray("videos");
                         if(s_videos != null ){
-                            for (int j = 0; j < s_videos.size(); j++) {
-                                JsonObject images1 = s_videos.get(j).getAsJsonObject();
-                                String admin_video_id = images1.get("admin_video_id").toString().replaceAll("\"", "");
-                                String title = images1.get("title").toString().replaceAll("\"", "");
-                                String description = images1.get("description").toString().replaceAll("\"", "");
-                                String duration = images1.get("duration").toString().replaceAll("\"", "");
-                                String third_image = images1.get("third_image").toString().replaceAll("\"", "");
-                                String category_name = images1.get("category_name").toString().replaceAll("\"", "");
-                                String default_image = images1.get("default_image").toString().replaceAll("\"", "");
-                                String publish_time = images1.get("publish_time").toString().replaceAll("\"", "");
-                                int category_id = Integer.parseInt(images1.get("category_id").toString().replaceAll("\"", ""));
-                                int watch_count = Integer.parseInt(images1.get("watch_count").toString().replaceAll("\"", ""));
-                                int ratings = Integer.parseInt(images1.get("ratings").toString().replaceAll("\"", ""));
-                                HashMap<String, String> Category = new HashMap<>();
-                                // Category.put("product_sub_id",product_sub_id);
-                                Category.put("admin_video_id",admin_video_id);
-                                Category.put("title",title);
-                                Category.put("description",description);
-                                Category.put("duration",duration);
-                                Category.put("third_image",third_image);
-                                Category.put("category_name",category_name);
-                                Category.put("default_image",default_image);
-                                Category.put("publish_time",publish_time);
-                                Category.put("category_id", String.valueOf(category_id));
-                                Category.put("watch_count", String.valueOf(watch_count));
-                                Category.put("ratings", String.valueOf(ratings));
-                                wish_list.add(Category);
+                            for (int j = 0; j < s_videos.length(); j++) {
+                                JSONObject object = s_videos.getJSONObject(j);
 
+                                Video video = new Video();
+                                video.setId(object.optString("admin_video_id"));
+                                video.setTitle(object.optString("title"));
+                                video.setDescription(object.optString("description"));
+                                video.setThird_image(AppConfig.image_url+object.optString("third_image"));
+                                video.setDuration(object.optString("duration"));
+                                video.setRatings(object.optString("ratings"));
+                                video.setDefault_image(AppConfig.image_url+object.optString("default_image"));
+                                video.setCategory_id(object.optString("category_id"));
+                                video.setCategory_name(object.optString("category_name"));
+                                video.setWatch_count(object.optString("watch_count"));
+                                video.setPublish_time(object.optString("publish_time"));
 
+                                suggestion_ArrayList.add(video);
                             }
-/////////////////////////////////////Adapter
                         }
-                        JsonObject most_viewed=data.getAsJsonObject("most_viewed");
-                        String mname = most_viewed.get("name").getAsString().replaceAll("\"", "");
-                        String mkey = most_viewed.get("key").getAsString().replaceAll("\"", "");
-                        JsonObject mlist=most_viewed.getAsJsonObject("list");
-                        int m_totalvideo = Integer.parseInt(mlist.get("totalvideo").toString().replaceAll("\"", ""));
-                        JsonArray m_videos=mlist.getAsJsonArray("videos");
+
+
+
+                        JSONObject most_viewed = data.getJSONObject("most_viewed");
+                        String mname = most_viewed.optString("name");
+                        String mkey = most_viewed.optString("key");
+                        JSONObject mlist = most_viewed.getJSONObject("list");
+                        int m_totalvideo = mlist.optInt("totalvideo");
+                        if (h_totalvideo > 0){
+                            rel_popular_rba.setVisibility(View.VISIBLE);
+                        }
+                        JSONArray m_videos = mlist.getJSONArray("videos");
                         if(m_videos != null ){
-                            for (int j = 0; j < m_videos.size(); j++) {
-                                JsonObject images1 = m_videos.get(j).getAsJsonObject();
-                                String admin_video_id = images1.get("admin_video_id").toString().replaceAll("\"", "");
-                                String title = images1.get("title").toString().replaceAll("\"", "");
-                                String description = images1.get("description").toString().replaceAll("\"", "");
-                                String duration = images1.get("duration").toString().replaceAll("\"", "");
-                                String third_image = images1.get("third_image").toString().replaceAll("\"", "");
-                                String category_name = images1.get("category_name").toString().replaceAll("\"", "");
-                                String default_image = images1.get("default_image").toString().replaceAll("\"", "");
-                                String publish_time = images1.get("publish_time").toString().replaceAll("\"", "");
-                                int category_id = Integer.parseInt(images1.get("category_id").toString().replaceAll("\"", ""));
-                                int watch_count = Integer.parseInt(images1.get("watch_count").toString().replaceAll("\"", ""));
-                                int ratings = Integer.parseInt(images1.get("ratings").toString().replaceAll("\"", ""));
-                                HashMap<String, String> Category = new HashMap<>();
-                                // Category.put("product_sub_id",product_sub_id);
-                                Category.put("admin_video_id",admin_video_id);
-                                Category.put("title",title);
-                                Category.put("description",description);
-                                Category.put("duration",duration);
-                                Category.put("third_image",third_image);
-                                Category.put("category_name",category_name);
-                                Category.put("default_image",default_image);
-                                Category.put("publish_time",publish_time);
-                                Category.put("category_id", String.valueOf(category_id));
-                                Category.put("watch_count", String.valueOf(watch_count));
-                                Category.put("ratings", String.valueOf(ratings));
-                                wish_list.add(Category);
+                            for (int j = 0; j < m_videos.length(); j++) {
+                                JSONObject object = m_videos.getJSONObject(j);
 
+                                Video video = new Video();
+                                video.setId(object.optString("admin_video_id"));
+                                video.setTitle(object.optString("title"));
+                                video.setDescription(object.optString("description"));
+                                video.setThird_image(AppConfig.image_url+object.optString("third_image"));
+                                video.setDuration(object.optString("duration"));
+                                video.setRatings(object.optString("ratings"));
+                                video.setDefault_image(AppConfig.image_url+object.optString("default_image"));
+                                video.setCategory_id(object.optString("category_id"));
+                                video.setCategory_name(object.optString("category_name"));
+                                video.setWatch_count(object.optString("watch_count"));
+                                video.setPublish_time(object.optString("publish_time"));
+
+                                most_viewed_ArrayList.add(video);
                             }
-/////////////////////////////////////Adapter
                         }
 
-                    }
-                    else {
+                        setAdapters();
 
+                    } else {
                         Toast.makeText(getActivity(), "message", Toast.LENGTH_LONG).show();
                     }
-
-
-                    Log.d(TAG,"Token \n" +"message");
-
-
-
                 }catch (Exception e) {
-
                     Toast.makeText(getActivity(),"Incorrect Client ID/Password", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
-
                 }
-
-
             }
         }, new Response.ErrorListener() {
-
             @Override
-
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "DATA NOT FOUND: " + error.getMessage());
                 Toast.makeText(getActivity(),
                         "Connection Error", Toast.LENGTH_LONG).show();
-
             }
         }) {
             @Override
@@ -516,13 +426,35 @@ public class HomeFragment extends Fragment  {
                 Log.d(TAG, "login param: "+params);
                 return params;
             }
-
-
         };
-
         // Adding request to request queue
         GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
-        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000,
+                10, 1.0f));
+
+    }
+
+    private void setAdapters(){
+
+        RecommendedAdapter recommendedAdapter =
+                new RecommendedAdapter(history_ArrayList, getActivity());
+        recycler1.setAdapter(recommendedAdapter);
+
+        MostViewedAdapter mostViewedAdapter =
+                new MostViewedAdapter(most_viewed_ArrayList, getActivity());
+        recycler2.setAdapter(mostViewedAdapter);
+
+        TrendingAdapter trendingAdapter =
+                new TrendingAdapter(trending_ArrayList, getActivity());
+        recycler3.setAdapter(trendingAdapter);
+
+        RecommendedAdapter recommendedAdapter2 =
+                new RecommendedAdapter(wish_ArrayList, getActivity());
+        recycler4.setAdapter(recommendedAdapter2);
+
+        RecommendedAdapter recommendedAdapter3 =
+                new RecommendedAdapter(suggestion_ArrayList, getActivity());
+        recycler5.setAdapter(recommendedAdapter3);
 
     }
 

@@ -9,81 +9,64 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.film.rba.R;
-import com.film.rba.model.Event;
+import com.film.rba.model.Video;
+import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchingAdapter.GroceryViewHolder>{
-    private List<Event> horizontalGrocderyList;
-    Context context;
+public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchingAdapter.MyViewHolder>{
+    private ArrayList<Video> videoArrayList;
+    private Context context;
 
-    public ContinueWatchingAdapter(List<Event> horizontalGrocderyList, Context context){
-        this.horizontalGrocderyList= horizontalGrocderyList;
+    public ContinueWatchingAdapter(ArrayList<Video> videoArrayList, Context context){
+        this.videoArrayList = videoArrayList;
         this.context = context;
     }
 
     @Override
-    public GroceryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflate the layout file
-        View groceryProductView = LayoutInflater.from(parent.getContext()).inflate(R.layout.continue_watching, parent, false);
-        GroceryViewHolder gvh = new GroceryViewHolder(groceryProductView);
+        View groceryProductView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_continue_watching, parent, false);
+        MyViewHolder gvh = new MyViewHolder(groceryProductView);
         return gvh;
     }
 
     @Override
-    public void onBindViewHolder(GroceryViewHolder holder, final int position) {
-        holder.imageView.setImageResource(horizontalGrocderyList.get(position).getProductImage());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-           holder. progressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
-        }
-       /* holder.time.setText(horizontalGrocderyList.get(position).getTime());
-        holder.title1.setText(horizontalGrocderyList.get(position).getTitle());
-        holder.title2.setText(horizontalGrocderyList.get(position).getSubtitle());
-        holder.title4.setText(horizontalGrocderyList.get(position).getTitle1());
-        holder.title5.setText(horizontalGrocderyList.get(position).getTitle2());*/
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+        Video video = videoArrayList.get(position);
 
-/*
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppCompatActivity activity4 = (AppCompatActivity)context;
-                Fragment myFragment4= new EventsDetailsHome();
-                activity4.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment4).addToBackStack(null).commit();
-            }
-        });
-*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           holder.progressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
+
+
+        Picasso.get().load(video.getDefault_image()).into(holder.imageView);
+
+        holder.tv_name.setText(video.getTitle());
 
     }
 
     @Override
     public int getItemCount() {
-        return horizontalGrocderyList.size();
+        return videoArrayList.size();
     }
 
-    public class GroceryViewHolder extends RecyclerView.ViewHolder {
-       RelativeLayout rl_main;
-        TextView title,subtitle,time,title1,title2,title4,title5;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView tv_name, tv_duration;
         ImageView imageView;
         ProgressBar progressBar;
-        public GroceryViewHolder(View view) {
+        public MyViewHolder(View view) {
             super(view);
-          /*  subtitle=view.findViewById(R.id.title1);
-            title=view.findViewById(R.id.title2);
-            time=view.findViewById(R.id.title3);
-
-            rl_main=view.findViewById(R.id.rl_main);
-            title1=view.findViewById(R.id.title1);
-            title2=view.findViewById(R.id.title2);*/
             imageView=view.findViewById(R.id.imageView1);
             progressBar=view.findViewById(R.id.progressBar);
-          /*  title4=view.findViewById(R.id.title4);
-            title5=view.findViewById(R.id.title5);*/
+            tv_name=view.findViewById(R.id.tv_name);
+            tv_duration=view.findViewById(R.id.tv_duration);
         }
     }
 }
