@@ -10,6 +10,7 @@
     <string name="name">Name</string>
     <string name="passworrd">Password</string>
     <string name="submit">Submit</string>
+    <string name="update">Update</string>
     <string name="setting">Settings</string>
     <string name="otp">OTP</string>
     <string name="old_password">Old Password</string>

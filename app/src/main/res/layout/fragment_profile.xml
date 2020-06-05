@@ -26,10 +26,10 @@
 
                 <RelativeLayout
                     android:id="@+id/rl_pic"
-                    android:layout_width="140dp"
+                    android:layout_width="100dp"
                     android:gravity="center"
                     android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     >
 
                     <RelativeLayout
@@ -45,10 +45,9 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginTop="0dp"
-                        android:layout_marginBottom="@dimen/activity_padding"
                         android:scaleType="centerCrop"
-                        app:civ_shadow_radius="5"
-                        app:civ_border_width="2dp" >
+                        app:civ_border_color="@color/colorPrimary"
+                        app:civ_border_width="1dp" >
                     </com.mikhaellopez.circularimageview.CircularImageView>
 
 
@@ -59,13 +58,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:layout_marginTop="10dp"
                     >
 
                     <TextView
                         android:id="@+id/txt_name"
                         android:layout_width="wrap_content"
                         android:gravity="center"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/lato_bold"
                         android:text="Malcolm Mckenzie"

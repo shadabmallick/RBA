@@ -14,6 +14,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 
 import com.film.rba.R;
+import com.film.rba.activities.MovieSingle;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -48,31 +49,17 @@ public class BannerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         View itemView = layoutInflater.inflate(R.layout.single_top,
                 container, false);
-        Log.d("TAG", "instantiateItem: "+images.get(position).get("default_image"));
+        //Log.d("TAG", "instantiateItem: "+images.get(position).get("default_image"));
         ImageView imageView = itemView.findViewById(R.id.top_image);
 
         Picasso.get().load(images.get(position).get("default_image")).into(imageView);
         container.addView(itemView);
 
-/*
-        if(!(images.get(position).get("link").equals(""))){
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent intent=new Intent(context, PageLink.class);
-                    intent.putExtra("link",images.get(position).get("link"));
-                    context.startActivity(intent);
-
-                }
-            });
-        }
-*/
-
-        /*Glide.with(context).load(images.get(position).get("image"))
-                .placeholder(R.mipmap.homebanner)
-                .into(imageView);*/
-
+        imageView.setOnClickListener(v -> {
+            Intent intent=new Intent(context, MovieSingle.class);
+            intent.putExtra("id", images.get(position).get("admin_video_id"));
+            context.startActivity(intent);
+        });
 
 
         return itemView;

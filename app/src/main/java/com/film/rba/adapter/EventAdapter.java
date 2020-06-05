@@ -49,6 +49,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, MovieSingle.class);
+                intent.putExtra("id", video.getId());
                 context.startActivity(intent);
             }
         });

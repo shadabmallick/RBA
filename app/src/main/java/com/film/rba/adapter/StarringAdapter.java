@@ -29,13 +29,16 @@ public class StarringAdapter extends RecyclerView.Adapter<StarringAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflate the layout file
-        View groceryProductView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_starring, parent, false);
+        View groceryProductView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.single_starring, parent, false);
         MyViewHolder gvh = new MyViewHolder(groceryProductView);
         return gvh;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+
+
 
 
     }
@@ -46,12 +49,10 @@ public class StarringAdapter extends RecyclerView.Adapter<StarringAdapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-       RelativeLayout rl_main;
-        TextView title,subtitle,time,title1,title2,title4,title5;
+        TextView title;
         ImageView imageView;
         public MyViewHolder(View view) {
             super(view);
-
             imageView=view.findViewById(R.id.imageView1);
 
         }

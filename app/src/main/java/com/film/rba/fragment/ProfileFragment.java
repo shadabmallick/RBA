@@ -1,6 +1,7 @@
 package com.film.rba.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.film.rba.R;
+import com.film.rba.activities.UpdateProfile;
 import com.film.rba.adapter.ContinueWatchingAdapter;
 import com.film.rba.adapter.RecommendedAdapter;
 import com.film.rba.adapter.WatchListAdapter;
@@ -108,8 +110,11 @@ public class ProfileFragment extends Fragment {
         Picasso.get().load(globalClass.getProfil_pic()).into(img_profile);
         txt_name.setText(globalClass.getName());
 
+
         rl_edit_profile.setOnClickListener(v -> {
 
+            Intent intent = new Intent(getActivity(), UpdateProfile.class);
+            startActivity(intent);
 
         });
 
@@ -118,6 +123,15 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onResume() {
+
+        try {
+            Picasso.get().load(globalClass.getProfil_pic()).into(img_profile);
+            txt_name.setText(globalClass.getName());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         super.onResume();
     }
 
@@ -149,6 +163,7 @@ public class ProfileFragment extends Fragment {
                         JSONObject profile = jsonObject.getJSONObject("profile");
                         String picture = AppConfig.image_url+profile.optString("picture");
                         Picasso.get().load(picture).into(img_profile);
+                        globalClass.setProfil_pic(picture);
 
                         JSONObject continue_watching = jsonObject.getJSONObject("continue_watching");
                         String total_video1 = continue_watching.optString("totalvideo");
@@ -280,7 +295,6 @@ public class ProfileFragment extends Fragment {
         WatchListAdapter watchListAdapter =
                 new WatchListAdapter(watch_ArrayList, getActivity());
         recyclerView2.setAdapter(watchListAdapter);
-
 
         RecommendedAdapter recommendedAdapter =
                 new RecommendedAdapter(recommended_watch_ArrayList, getActivity());

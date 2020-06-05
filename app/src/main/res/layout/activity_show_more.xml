@@ -7,41 +7,40 @@
     <RelativeLayout
         android:id="@+id/rl_main"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-
+        android:layout_height="?android:actionBarSize"
         android:background="@color/rba">
 
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/img_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/back_white"></ImageView>
+            android:layout_marginStart="15dp"
+            android:src="@mipmap/back_white"
+            android:layout_centerVertical="true"
+            />
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/lato_regular"
             android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/img"
-            android:text="Just Arrived Hindi"></TextView>
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/img_back"
+            android:text="Just Arrived Hindi"/>
 
 
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recycler2"
-
-        android:layout_marginLeft="10dp"
+        android:padding="10dp"
         android:layout_below="@+id/rl_main"
-        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-
-
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

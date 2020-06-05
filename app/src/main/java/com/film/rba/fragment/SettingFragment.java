@@ -3,6 +3,7 @@ package com.film.rba.fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,8 +40,8 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class SettingFragment extends Fragment  {
 
     private TextView txt_setting;
-
-    private CardView card_change_pass, card_logout;
+    private CardView card_change_pass, card_logout, card_privacy, card_terms,
+            card_about_us, card_faq, card_contact_us;
 
     private GlobalClass globalClass;
     private Shared_Preference preference;
@@ -67,7 +68,14 @@ public class SettingFragment extends Fragment  {
         card_logout=view.findViewById(R.id.card_logout);
         card_change_pass=view.findViewById(R.id.card_change_pass);
 
+        card_privacy=view.findViewById(R.id.card_privacy);
+        card_terms=view.findViewById(R.id.card_terms);
+        card_about_us=view.findViewById(R.id.card_about_us);
+        card_faq=view.findViewById(R.id.card_faq);
+        card_contact_us=view.findViewById(R.id.card_contact_us);
 
+
+        txt_setting.setVisibility(View.INVISIBLE);
         txt_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +96,50 @@ public class SettingFragment extends Fragment  {
             startActivity(intent);
         });
 
+        card_privacy.setOnClickListener(v -> {
+
+            String url = AppConfig.PRIVACY_URL;
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+
+        });
+
+        card_terms.setOnClickListener(v -> {
+
+            String url = AppConfig.TERMS_URL;
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+
+        });
+
+        card_about_us.setOnClickListener(v -> {
+
+            String url = AppConfig.ABOUT_US_URL;
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+
+        });
+
+        card_faq.setOnClickListener(v -> {
+
+            String url = AppConfig.FAQ_URL;
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+
+        });
+
+        card_contact_us.setOnClickListener(v -> {
+
+            String url = AppConfig.CONTACT_US_URL;
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+
+        });
 
 
     }

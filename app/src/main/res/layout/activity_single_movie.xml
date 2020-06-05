@@ -6,26 +6,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linear_main"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            >
 
             <LinearLayout
                 android:id="@+id/ll_back"
                 android:layout_width="match_parent"
                 android:background="@android:color/black"
-                android:layout_height="wrap_content">
+                android:gravity="center_vertical"
+                android:layout_height="?android:actionBarSize">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="50dp"
+                    android:id="@+id/img_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@mipmap/back_white"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
                     android:background="@android:color/black"
                     />
 
@@ -37,20 +42,19 @@
                 android:layout_height="250dp" />
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:background="@color/light_grey"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:orientation="vertical">
 
-
                 <TextView
+                    android:id="@+id/tv_video_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
                     android:fontFamily="@font/lato_bold"
-                    android:text="Hum Saath-Saath Hain"></TextView>
+                    android:text="Hum Saath-Saath Hain"/>
 
 
                <LinearLayout
@@ -60,41 +64,24 @@
                    android:orientation="horizontal">
 
                    <TextView
+                       android:id="@+id/tv_genre_name"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
                        android:gravity="center"
                        android:textColor="@color/dark_grey"
                        android:fontFamily="@font/lato_regular"
-                       android:text="1999"></TextView>
+                       android:text="Family"/>
 
                    <View
                        android:layout_width="2sp"
                        android:layout_marginLeft="5sp"
                        android:layout_gravity="center"
                        android:background="@color/dark_grey"
-                       android:layout_height="14sp"></View>
+                       android:layout_height="14sp"/>
 
                    <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:gravity="center"
-                       android:textColor="@color/dark_grey"
-
-                       android:fontFamily="@font/lato_regular"
-                       android:layout_marginLeft="5sp"
-                       android:text="Family"></TextView>
-
-                   <View
-                       android:layout_width="2sp"
-                       android:layout_marginLeft="5sp"
-                       android:layout_gravity="center"
-                       android:background="@color/dark_grey"
-                       android:layout_height="14sp"></View>
-
-
-                   <TextView
+                       android:id="@+id/tv_duration"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
@@ -102,18 +89,20 @@
                        android:textColor="@color/dark_grey"
                        android:fontFamily="@font/lato_regular"
                        android:layout_marginLeft="5sp"
-                       android:text="Hindi"></TextView>
+                       android:text="Hindi"/>
 
                </LinearLayout>
 
 
-                <TextView
+                <com.skyhope.showmoretextview.ShowMoreTextView
+                    android:id="@+id/tv_description"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/movie_brief"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/lato_regular"
                     android:textColor="@android:color/black"
-                    android:layout_height="wrap_content"></TextView>
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -126,32 +115,37 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
-                        android:text="Release date :"></TextView>
+                        android:text="Release date :"/>
+
                     <TextView
+                        android:id="@+id/tv_release_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/rba"
                         android:layout_marginLeft="10dp"
-                        android:text="5th November 1999"></TextView>
+                        android:text="5th November 1999"/>
+
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp">
 
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
-                        android:text="Director :"></TextView>
+                        android:text="Director :"/>
                     <TextView
+                        android:id="@+id/tv_director"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/rba"
                         android:layout_marginLeft="10dp"
-                        android:text="Suraj R. Barjatya"></TextView>
+                        android:text="Suraj R. Barjatya"/>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -165,18 +159,18 @@
                 android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:fontFamily="@font/lato_semibold"
-                android:textSize="14dp"
-                android:layout_height="wrap_content"></TextView>
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/recycler1"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_below="@+id/txt_label"
-                android:layout_height="wrap_content">
-
-
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/txt_label1"
@@ -188,22 +182,17 @@
                 android:layout_width="wrap_content"
                 android:fontFamily="@font/lato_semibold"
                 android:textSize="14dp"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/recycler2"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_below="@+id/txt_label"
-                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
-
-
-
-    </ScrollView>
-
-
-
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

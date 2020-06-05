@@ -1,6 +1,7 @@
 package com.film.rba.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.film.rba.R;
+import com.film.rba.activities.MovieSingle;
 import com.film.rba.model.Video;
 import com.squareup.picasso.Picasso;
 
@@ -45,10 +47,18 @@ public class ContinueWatchingAdapter extends RecyclerView.Adapter<ContinueWatchi
            holder.progressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
         }
 
-
         Picasso.get().load(video.getDefault_image()).into(holder.imageView);
 
         holder.tv_name.setText(video.getTitle());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, MovieSingle.class);
+                intent.putExtra("id", video.getId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

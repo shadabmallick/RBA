@@ -12,6 +12,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
 
 
@@ -32,7 +34,7 @@
 
         <meta-data
             android:name="JW_LICENSE_KEY"
-            android:value="eyEJpDiU0GK28Hqqu2BiC4yKy8N+e204PYsM3p+ikqUxMthPKNCJaQMKpsS4Tl7W" />
+            android:value="YAFSBtCLduCShiefKE0wXFUntjtkPgjmHtYSM0mkvqkOVTCjrNJEU5f6t6QAsjLk" />
 
 
 
@@ -51,12 +53,14 @@
         <activity android:name=".activities.LoginActivity"
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
         <activity android:name=".activities.RegistrationActivity"
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
@@ -64,6 +68,7 @@
         <activity android:name=".activities.ForgetPassword"
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
@@ -71,12 +76,14 @@
         <activity android:name=".activities.ChangePassword"
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
         <activity android:name=".activities.HomeScreen"
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
@@ -84,6 +91,7 @@
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
@@ -91,13 +99,15 @@
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
-        <activity android:name=".activities.JustArrivedActvity"
+        <activity android:name=".activities.ShowMoreActivity"
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
@@ -105,6 +115,7 @@
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
@@ -112,11 +123,19 @@
             android:theme="@style/MyNoActionBar"
             android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
 
+        <activity android:name=".activities.UpdateProfile"
+            android:theme="@style/MyNoActionBar"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity">
 
+        </activity>
 
 
 

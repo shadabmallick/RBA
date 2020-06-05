@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/colro_shade"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -11,7 +10,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
-        <TextView
+     <!--   <TextView
             android:id="@+id/txt_rba"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,55 +19,44 @@
             android:layout_marginLeft="10dp"
             android:textColor="@color/rba"
             android:fontFamily="@font/poppin_extra"
-            />
+            />-->
 
         <ScrollView
-            android:layout_below="@+id/txt_rba"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="60dp"
+                >
 
                 <RelativeLayout
                     android:id="@+id/rl_pic"
-                    android:layout_width="110dp"
+                    android:layout_width="130dp"
                     android:gravity="center"
                     android:layout_marginTop="10dp"
-                    android:layout_height="100dp"
+                    android:layout_height="120dp"
                     android:layout_gravity="center_horizontal"
                     >
 
                     <RelativeLayout
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
                         android:background="@drawable/circle"
                         >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="A"
-                            android:fontFamily="@font/lato_regular"
-                            android:textSize="50sp"
-                            android:layout_centerInParent="true"
-                            android:textColor="@android:color/white"/>
-
 
                     </RelativeLayout>
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/img_profile"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginBottom="@dimen/activity_padding"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
                         android:scaleType="centerCrop"
+                        app:civ_border_color="@color/colorPrimary"
                         app:civ_border_width="1dp" >
                     </com.mikhaellopez.circularimageview.CircularImageView>
 
@@ -103,32 +91,63 @@
                     android:orientation="horizontal"
                     android:padding="10dp">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:src="@mipmap/user_p"/>
-
-                    <View
-                        android:layout_width="2dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:background="@android:color/darker_gray"/>
-
-                    <EditText
-                        android:id="@+id/edt_old_pass"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:background="#00000000"
-                        android:inputType="textPassword"
-                        android:fontFamily="@font/lato_regular"
-                        android:hint="@string/old_password"
-                        android:textColor="@android:color/darker_gray"
-                        android:textColorHint="@android:color/darker_gray"
-                        android:textSize="17sp"
-                        />
+                        android:layout_height="wrap_content"
+                        >
+
+                        <ImageView
+                            android:id="@+id/iv22"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:src="@mipmap/user_p"/>
+
+                        <View
+                            android:id="@+id/view2"
+                            android:layout_width="2dp"
+                            android:layout_height="40dp"
+                            android:layout_toEndOf="@+id/iv22"
+                            android:layout_gravity="center"
+                            android:background="@android:color/darker_gray"/>
+
+                        <EditText
+                            android:id="@+id/edt_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:background="#00000000"
+                            android:fontFamily="@font/lato_regular"
+                            android:hint="@string/name"
+                            android:layout_toEndOf="@+id/view2"
+                            android:layout_toStartOf="@+id/view14"
+                            android:textColor="@color/dark_grey"
+                            android:textColorHint="@android:color/darker_gray"
+                            android:textSize="17sp"
+                            />
+
+
+                        <View
+                            android:id="@+id/view14"
+                            android:layout_width="2dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="40dp"
+                            android:background="@android:color/darker_gray"/>
+
+                        <ImageView
+                            android:id="@+id/iv_edit_name"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:padding="5dp"
+                            android:src="@mipmap/icon_edit"
+                            />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -150,10 +169,10 @@
                         <ImageView
                             android:id="@+id/img1"
                             android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:src="@mipmap/password"/>
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/email"/>
 
                         <View
                             android:id="@+id/view1"
@@ -164,39 +183,19 @@
                             android:background="@android:color/darker_gray"/>
 
                         <EditText
-                            android:id="@+id/edt_new_pass"
+                            android:id="@+id/edt_email"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
-                            android:layout_toLeftOf="@+id/view2"
                             android:layout_toRightOf="@+id/view1"
                             android:background="#00000000"
-                            android:inputType="textPassword"
+                            android:inputType="textEmailAddress"
                             android:fontFamily="@font/lato_regular"
-                            android:hint="@string/new_password"
-                            android:textColor="@android:color/darker_gray"
+                            android:hint="@string/email"
+                            android:textColor="@color/dark_grey"
                             android:textColorHint="@android:color/darker_gray"
-                            android:textSize="17dp"
-                            />
-
-                        <View
-                            android:id="@+id/view2"
-                            android:layout_width="2dp"
-                            android:layout_height="40dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="40dp"
-                            android:background="@android:color/darker_gray"/>
-
-                        <ImageView
-                            android:id="@+id/iv_eye1"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:padding="5dp"
-                            android:src="@mipmap/invisible"
+                            android:textSize="17sp"
                             />
 
                     </RelativeLayout>
@@ -224,7 +223,7 @@
                             android:layout_height="30dp"
                             android:layout_marginTop="5dp"
                             android:padding="5dp"
-                            android:src="@mipmap/password"/>
+                            android:src="@mipmap/mobile"/>
 
                         <View
                             android:id="@+id/view3"
@@ -235,7 +234,7 @@
                             android:background="@android:color/darker_gray"/>
 
                         <EditText
-                            android:id="@+id/edt_confirm_pass"
+                            android:id="@+id/edt_mobile"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -243,10 +242,10 @@
                             android:layout_toLeftOf="@+id/view4"
                             android:layout_toRightOf="@+id/view3"
                             android:background="#00000000"
-                            android:inputType="textPassword"
+                            android:inputType="phone"
                             android:fontFamily="@font/lato_regular"
-                            android:hint="@string/c_password"
-                            android:textColor="@android:color/darker_gray"
+                            android:hint="@string/mobile"
+                            android:textColor="@color/dark_grey"
                             android:textColorHint="@android:color/darker_gray"
                             android:textSize="17dp"
                             />
@@ -261,13 +260,13 @@
                             android:background="@android:color/darker_gray"/>
 
                         <ImageView
-                            android:id="@+id/iv_eye2"
+                            android:id="@+id/iv_edit_phone"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:padding="5dp"
-                            android:src="@mipmap/invisible"
+                            android:src="@mipmap/icon_edit"
                             />
 
                     </RelativeLayout>
@@ -275,7 +274,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:id="@+id/rl_submit"
+                    android:id="@+id/rl_update"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="30dp"
@@ -283,27 +282,18 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/tv_login"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_bold"
-                        android:text="@string/submit"
-
+                        android:text="@string/update"
                         android:textColor="@android:color/white"
                         android:textSize="20dp" />
 
-
                 </RelativeLayout>
-
-
-
 
             </LinearLayout>
 
-
-
         </ScrollView>
-
 
 
     </RelativeLayout>
